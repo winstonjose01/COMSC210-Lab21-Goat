@@ -75,29 +75,33 @@ class DoublyLinkedList {
             head = nullptr; 
             tail = nullptr; 
         }
-    
+
+        // Function to add a Goat to the end of the list
         void push_back(Goat gt){
             Node *newNode = new Node(gt);
+
             if (!tail)
-                head = tail = newNode;
+                head = tail = newNode; // If list is empty, both head and tail point to the new node
             else{
-                tail->next = newNode;
-                newNode->prev = tail;
-                tail = newNode;
+                tail->next = newNode; // Add new node to the current tail
+                newNode->prev = tail; // Set new node's prev to current tail
+                tail = newNode; // Update the tail to point to the new node
                 }
         }
 
+        // Function to add a Goat to the front of the list
         void push_front(Goat gt){
             Node* newNode = new Node(gt);
             if (!head)
-                head = tail = newNode;
+                head = tail = newNode; // If list is empty, both head and tail point to the new node
             else{
-                newNode->next = head;
-                head->prev = newNode;
-                head = newNode;
+                newNode->next = head; // Add new node to the current head
+                head->prev = newNode; // Set new node's nex to current head
+                head = newNode; // Update the head to be the new node
             }
         }
 
+        // Function to insert a Goat after a specific position in the list
         void insert_after(Goat gt, int position){
             if (position <0){
                 cout << "Position must be >=0" << endl;
@@ -106,7 +110,7 @@ class DoublyLinkedList {
 
             Node *newNode = new Node(gt);
             if (!head){
-                head = tail = newNode;
+                head = tail = newNode; // If the list is empty, new node is both head and tail
                 return;
             }
 
@@ -120,23 +124,24 @@ class DoublyLinkedList {
                 return;
             }
 
-            newNode->next = temp->next;
-            newNode->prev = temp;
+            newNode->next = temp->next; // Link the new node to temp's next node
+            newNode->prev = temp; // Link the new node's prev to temp
             if (temp->next)
-                temp->next->prev = newNode;
+                temp->next->prev = newNode; // Adjust next node's prev pointer
             else
                 tail = newNode; // Inserting at the end
-            temp->next = newNode;
+            temp->next = newNode; // Link temp to the new node
         }
 
         void delete_node(Goat gt){
             if (!head) return;
 
             Node *temp = head;
+            // Search for the goat by name
             while (temp && !(temp->goat.getname() == gt.getname()))
                 temp = temp ->next;
             
-            if (!temp) return; // Value not found
+            if (!temp) return; // // If goat not found, exit
 
             if (temp->prev){
                 temp->prev->next = temp->next;
@@ -155,6 +160,7 @@ class DoublyLinkedList {
             delete temp;
         }
 
+        // Function to print the entire list of goats from head to tail
         void print(){
             Node *current = head;
             if (!current){
@@ -162,11 +168,13 @@ class DoublyLinkedList {
                 return;
             }
             while (current){
-                current-> goat.print();
+                current-> goat.print(); // Print each goat in the list
                 current = current->next;            
             }
             cout << endl;
         }
+
+        // Function to print the list in reverse order (from tail to head)
         void print_reverse(){
             Node *current = tail;
             if(!current){
@@ -174,12 +182,13 @@ class DoublyLinkedList {
                 return;
             }
             while (current){
-                current->goat.print();
+                current->goat.print(); // Print each goat in reverse order
                 current = current->prev;
             }
             cout << endl;
         }
 
+        // Destructor to clean up all nodes and free memory
         ~DoublyLinkedList(){
             while (head){
                 Node *temp = head;
@@ -190,19 +199,22 @@ class DoublyLinkedList {
 };
 
 int main(){
-    srand(time(0));
+    srand(time(0)); // Seed for random number generation
+
     DoublyLinkedList goat_list;
+
+    // Random list size
     int size = MIN_LIST + rand()%(MAX_LIST - MIN_LIST  + 1);
 
     for (int i = 0; i < size; i++){
-        goat_list.push_back(Goat());
+        goat_list.push_back(Goat()); // Add random goats to the list
     }
 
     cout << "Forward:" << endl;
-    goat_list.print();
+    goat_list.print();  // Print the list forward
 
     cout << "Backward:" << endl;
-    goat_list.print_reverse();
+    goat_list.print_reverse();  // Print the list in reverse
 
     goat_list.~DoublyLinkedList();
 
