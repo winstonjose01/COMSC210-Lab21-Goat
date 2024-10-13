@@ -7,12 +7,26 @@
 #include <random>
 using namespace std;
 
+const int SIZE = 15;
+const int MAX = 15, MIN = 1, MAX_LIST = 20, MIN_LIST = 5;
+
 class Goat{
     private:
         int age;
         string name;
         string color;
-
+        string names[SIZE] = {
+                        "Billy", "Nanny", "Daisy", "Goatbert", "Bella", 
+                        "Luna", "Charlie", "Mabel", "Finn", "Pepper", 
+                        "Clover", "Rosie", "Hazel", "Oreo", "Patches"};
+        string color[SIZE] = {
+                        "Red", "Green", "Blue", "Yellow", "Purple", 
+                        "Orange", "Pink", "Brown", "Black", "White", 
+                        "Gray", "Cyan", "Magenta", "Violet", "Turquoise"};
+    publice:
+        Goat(){
+            age = 
+        }
 
 };
 
@@ -37,13 +51,39 @@ class DoublyLinkedList {
             tail = nullptr;
         }
     
-    void push_back(Goat gt){
-        Node *newNode = new Node(gt);
-        if (!tail)
-            head = tail = newNode
-        
+        void push_back(Goat gt){
+            Node *newNode = new Node(gt);
+            if (!tail)
+                head = tail = newNode;
+            else{
+                tail->next = newNode;
+                newNode->prev = tail;
+                tail = newNode;
+                }
+        }
 
+        void push_front(Goat gt){
+            Node* newNode = new Node(gt);
+            if (!head)
+                head = tail = newNode;
+            else{
+                newNode->next = head;
+                head->prev = newNode;
+                head = newNode;
+            }
+        }
 
-    }
+        void print(Goat gt){
+            Node * current = head;
+            if (!current){
+                cout << "List is empty!" << endl;
+                return;
+            }
+            while (current){
+                
+            }
+        }
+
+            
 
 };
