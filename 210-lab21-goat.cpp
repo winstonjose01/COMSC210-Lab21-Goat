@@ -84,6 +84,31 @@ class DoublyLinkedList {
             }
         }
 
+        void insert_after(Goat gt, int position){
+            if (position <0){
+                cout << "Position must be >=0" << endl;
+                return;
+            }
+
+            Node *newNode = new Node(gt);
+            if (!head){
+                head = tail = newNode;
+                return;
+            }
+
+            Node *temp = head;
+            for (int i = 0; i < position && temp; i++)
+                temp = temp->next;
+            
+            if (!temp){
+                cout << "Position exceeds list size. Node not inserted. \n";
+                delete newNode;
+                return;
+            }
+
+            newNode->next = temp->next;
+        }
+
         void print(){
             Node *current = head;
             if (!current){
@@ -127,8 +152,13 @@ int main(){
         goat_list.push_back(Goat());
     }
 
-    cout 
+    cout << "Forward:" << endl;
+    goat_list.print();
 
+    cout << "Backward:" << endl;
+    goat_list.print_reverse();
+
+    goat_list.~DoublyLinkedList();
 
     return 0;
 }
