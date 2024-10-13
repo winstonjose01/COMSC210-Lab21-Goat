@@ -119,7 +119,7 @@ class DoublyLinkedList {
             if (!head) return;
 
             Node *temp = head;
-            while (temp && temp->goat != gt)
+            while (temp && !(temp->goat == gt))
                 temp = temp ->next;
             
             if (!temp) return; // Value not found
