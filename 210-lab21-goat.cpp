@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <random>
+#include <iomanip>
 using namespace std;
 
 const int SIZE = 15;
@@ -19,15 +20,25 @@ class Goat{
                         "Billy", "Nanny", "Daisy", "Goatbert", "Bella", 
                         "Luna", "Charlie", "Mabel", "Finn", "Pepper", 
                         "Clover", "Rosie", "Hazel", "Oreo", "Patches"};
-        string color[SIZE] = {
+        string colors[SIZE] = {
                         "Red", "Green", "Blue", "Yellow", "Purple", 
                         "Orange", "Pink", "Brown", "Black", "White", 
                         "Gray", "Cyan", "Magenta", "Violet", "Turquoise"};
-    publice:
+    public:
         Goat(){
-            age = 
+            age = MIN + rand() % (MAX - MIN + 1);
+            name = names[rand() % (MAX - MIN + 1)];
+            color = colors[rand() % (MAX - MIN + 1)];
+        }
+        Goat(int a, string n, string c){
+            age = a; name = n; color = c;
         }
 
+        void print() const {
+            cout << setw(5) << " " << name << " (" << color << ", " << age << ")" << endl;
+        }
+        
+        
 };
 
 
@@ -83,7 +94,13 @@ class DoublyLinkedList {
                 
             }
         }
-
-            
-
 };
+
+int main(){
+    srand(time(0));
+    DoublyLinkedList goat_list;
+    int size = MIN_LIST + rand() 
+
+
+    return 0;
+}
