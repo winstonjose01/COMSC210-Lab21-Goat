@@ -13,9 +13,11 @@ const int MAX = 15, MIN = 1, MAX_LIST = 20, MIN_LIST = 5;
 
 class Goat{
     private:
-        int age;
-        string name;
-        string color;
+        int age;            // Goat's age
+        string name;        // Goat's name
+        string color;       // Goat's color
+
+        // Arrays to store possible names and colors for goats
         string names[SIZE] = {
                         "Billy", "Nanny", "Daisy", "Goatbert", "Bella", 
                         "Luna", "Charlie", "Mabel", "Finn", "Pepper", 
@@ -25,41 +27,53 @@ class Goat{
                         "Orange", "Pink", "Brown", "Black", "White", 
                         "Gray", "Cyan", "Magenta", "Violet", "Turquoise"};
     public:
+    // Default constructor to randomly assign a name, color, and age to a goat
         Goat(){
             age = MIN + rand() % (MAX - MIN + 1);
             name = names[rand() % (MAX - MIN + 1)];
             color = colors[rand() % (MAX - MIN + 1)];
         }
+
+        // Parameterized constructor to create a goat with a specific age, name, and color
         Goat(int a, string n, string c){
             age = a; name = n; color = c;
         }
 
+        // Function to print Goat's details (name, color, and age)
         void print() const {
             cout << setw(5) << " " << name << " (" << color << ", " << age << ")" << endl;
+        }
+
+        // Function to get the name of the goat
+        string getname() {
+            return name;
         }
         
         
 };
 
-
+// Class representing a doubly linked list for Goat objects
 class DoublyLinkedList {
     private:
         struct Node{
-            Goat goat;
+            // Structure for a node in the doubly linked list
+            Goat goat;      
             Node *prev;
             Node *next;
+             // Constructor for Node, initializing goat, prev, and next pointers
             Node (Goat &g, Node *p = nullptr, Node *n = nullptr){
                 goat = g;
                 prev = p;
                 next = n;
             }
         };
-        Node *head;
-        Node *tail;
+        Node *head; // Pointer to the first node on the list
+        Node *tail; // Pointer to the last node on the list
      public:
+        // Constructor to initialize an empty doubly linked list
         DoublyLinkedList(){
-            head = nullptr;
-            tail = nullptr;
+            head = nullptr; 
+            tail = nullptr; 
         }
     
         void push_back(Goat gt){
@@ -119,7 +133,7 @@ class DoublyLinkedList {
             if (!head) return;
 
             Node *temp = head;
-            while (temp && !(temp->goat == gt))
+            while (temp && !(temp->goat.getname() == gt.getname()))
                 temp = temp ->next;
             
             if (!temp) return; // Value not found
