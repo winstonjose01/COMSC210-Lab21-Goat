@@ -84,14 +84,36 @@ class DoublyLinkedList {
             }
         }
 
-        void print(Goat gt){
-            Node * current = head;
+        void print(){
+            Node *current = head;
             if (!current){
                 cout << "List is empty!" << endl;
                 return;
             }
             while (current){
-                
+                current-> goat.print();
+                current = current->next;            
+            }
+            cout << endl;
+        }
+        void print_reverse(){
+            Node *current = tail;
+            if(!current){
+                cout << "List is empty!" << endl;
+                return;
+            }
+            while (current){
+                current->goat.print();
+                current = current->prev;
+            }
+            cout << endl;
+        }
+
+        ~DoublyLinkedList(){
+            while (head){
+                Node *temp = head;
+                head = head->next;
+                delete temp;
             }
         }
 };
@@ -99,7 +121,13 @@ class DoublyLinkedList {
 int main(){
     srand(time(0));
     DoublyLinkedList goat_list;
-    int size = MIN_LIST + rand() 
+    int size = MIN_LIST + rand()%(MAX_LIST - MIN_LIST  + 1);
+
+    for (int i = 0; i < size; i++){
+        goat_list.push_back(Goat());
+    }
+
+    cout 
 
 
     return 0;
