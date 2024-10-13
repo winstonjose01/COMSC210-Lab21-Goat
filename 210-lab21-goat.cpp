@@ -1,6 +1,6 @@
 // COMS210 | Lab 21  | Winston Jose
 // IDE used: Visual Studio Code
-// Github link:
+// Github link: https://github.com/winstonjose01/COMSC210-Lab21-Goat 
 
 
 #include <iostream>
@@ -8,6 +8,7 @@
 #include <iomanip>
 using namespace std;
 
+// Constants for random distribution and array sizing
 const int SIZE = 15;
 const int MAX = 15, MIN = 1, MAX_LIST = 20, MIN_LIST = 5;
 
@@ -216,7 +217,7 @@ int main(){
     cout << "Backward:" << endl;
     goat_list.print_reverse();  // Print the list in reverse
 
-    goat_list.~DoublyLinkedList();
+    goat_list.~DoublyLinkedList(); // Call the desctructor
 
     return 0;
 }
